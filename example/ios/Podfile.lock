@@ -1,11 +1,17 @@
 PODS:
   - amazon_ivs (0.0.1):
+    - AmazonIVSPlayer
     - Flutter
+  - AmazonIVSPlayer (1.16.0)
   - Flutter (1.0.0)
 
 DEPENDENCIES:
   - amazon_ivs (from `.symlinks/plugins/amazon_ivs/ios`)
   - Flutter (from `Flutter`)
+
+SPEC REPOS:
+  trunk:
+    - AmazonIVSPlayer
 
 EXTERNAL SOURCES:
   amazon_ivs:
@@ -14,7 +20,8 @@ EXTERNAL SOURCES:
     :path: Flutter
 
 SPEC CHECKSUMS:
-  amazon_ivs: c94ac0b9970df4823045944e265ccc541520bc34
+  amazon_ivs: 81d181b1045be8b25e8148d643da6d7d911f90de
+  AmazonIVSPlayer: e9092086094e70ba1e39b3f6f57f623da05b4b27
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
