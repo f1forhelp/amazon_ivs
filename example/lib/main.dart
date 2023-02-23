@@ -50,23 +50,90 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
+      home: BaseScreen(platformVersion: _platformVersion),
+    );
+  }
+}
+
+class BaseScreen extends StatelessWidget {
+  const BaseScreen({
+    super.key,
+    required String platformVersion,
+  }) : _platformVersion = platformVersion;
+
+  final String _platformVersion;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Plugin example app'),
+      ),
+      body: Column(
+        children: [
+          Center(
+            child: Text('Running on: $_platformVersion\n'),
+          ),
+          CustomTextButton(
+            label: "Player Screen",
+            ontap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PlayerScreen(),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomTextButton extends StatelessWidget {
+  final String label;
+  final Function()? ontap;
+
+  const CustomTextButton({super.key, required this.label, this.ontap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: ontap,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.pink,
         ),
-        body: Column(
-          children: [
-            Center(
-              child: Text('Running on: $_platformVersion\n'),
-            ),
-            Container(
-              color: Colors.orange,
-              width: 200,
-              height: 200,
-              child: TestPlayer(),
-            ),
-          ],
+        padding: const EdgeInsets.all(10),
+        child: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
         ),
+      ),
+    );
+  }
+}
+
+class PlayerScreen extends StatefulWidget {
+  const PlayerScreen({super.key});
+
+  @override
+  State<PlayerScreen> createState() => _PlayerScreenState();
+}
+
+class _PlayerScreenState extends State<PlayerScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.pink,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(child: Center(child: TestPlayer())),
+        ],
       ),
     );
   }
